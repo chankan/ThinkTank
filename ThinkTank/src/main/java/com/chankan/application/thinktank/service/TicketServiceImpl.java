@@ -22,5 +22,12 @@ public class TicketServiceImpl {
 		return ticketByID;
 	}
 	
+	
+	public DonationTicketDetails addTicket(DonationTicketDetails newTicket) throws Exception
+	{
+		TicketMasterDAO dao = new TicketMasterDAO();
+		dao.addTicket(newTicket);
+		return newTicket;
+	}
 
 }

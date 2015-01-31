@@ -14,6 +14,9 @@ public class HospitalMasterDAO {
 
 	public List<HospitalMaster> getHospital()
 	{
+		/*
+		 * Get List of all hospitals
+		 */
 		
 		Session session = DatabaseUtil.getSession();
 		List<HospitalMaster> hospitalList = session.createCriteria(HospitalMaster.class).list();
@@ -25,6 +28,12 @@ public class HospitalMasterDAO {
 	
 	public List<HospitalMaster> getDonationCenter()
 	{
+		
+		/*
+		 * Get List of all Donation centers (SubsetOF Hospitals)
+		 */
+		
+		
 		int i =0;
 		Session session = DatabaseUtil.getSession();
 		Criteria crieteria = session.createCriteria(HospitalMaster.class);

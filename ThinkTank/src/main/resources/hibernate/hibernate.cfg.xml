@@ -19,8 +19,14 @@
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		
 		<!-- Mapping Resources -->
-		<mapping resource="hibernate/HospitalMaster.hbm.xml"/>
+		<mapping resource="hibernate/DonorClinicalDetails.hbm.xml"/>
+		<mapping resource="hibernate/DonorDetails.hbm.xml"/>
+		<mapping resource="hibernate/DonorDonationStatus.hbm.xml"/>
 		<mapping resource="hibernate/DonorTicketDetails.hbm.xml"/>
+		<mapping resource="hibernate/HospitalMaster.hbm.xml"/>
+		<mapping resource="hibernate/PlatletsDonationDetails.hbm.xml"/>
+		
+		
 		
     </session-factory>
 </hibernate-configuration>
