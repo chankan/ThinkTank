@@ -17,8 +17,18 @@ public class DonorClinicalDetails {
 	private int isSufferingFromDiseases;
 	private int isDrugConsumption;
 	private int isPregnancySymptoms;
-	private float hemoglobinLevel;
+	private Double hemoglobinLevel;
 	private String Comments;
+	
+	
+	
+	
+	public Double getHemoglobinLevel() {
+		return hemoglobinLevel;
+	}
+	public void setHemoglobinLevel(Double hemoglobinLevel) {
+		this.hemoglobinLevel = hemoglobinLevel;
+	}
 	public int getClinicalID() {
 		return clinicalID;
 	}
@@ -85,12 +95,7 @@ public class DonorClinicalDetails {
 	public void setIsPregnancySymptoms(int isPregnancySymptoms) {
 		this.isPregnancySymptoms = isPregnancySymptoms;
 	}
-	public float getHemoglobinLevel() {
-		return hemoglobinLevel;
-	}
-	public void setHemoglobinLevel(float hemoglobinLevel) {
-		this.hemoglobinLevel = hemoglobinLevel;
-	}
+	
 	public String getComments() {
 		return Comments;
 	}

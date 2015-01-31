@@ -28,12 +28,12 @@ public class DonorDonationStatus {
 		this.donorDetailsID = donorDetailsID;
 	}
 
-	public int getDonorClinicalData() {
+	public int getdonorClinicalID() {
 		return donorClinicalID;
 	}
 
-	public void setDonorClinicalData(int donorClinicalData) {
-		this.donorClinicalID = donorClinicalData;
+	public void setdonorClinicalID(int donorClinicalID) {
+		this.donorClinicalID = donorClinicalID;
 	}
 
 	public int getHospitalID() {
