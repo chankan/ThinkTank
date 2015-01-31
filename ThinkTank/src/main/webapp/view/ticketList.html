@@ -1,0 +1,63 @@
+<div class="container" >
+	<div class="row" >
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="col-xs-9 text-left">Ticket List</div>
+					 <div class="col-xs-3 text-right"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></div>
+				 </div>
+				<div class="panel-body">
+					<div class="dataTable_wrapper">
+						<table class="table table-striped table-bordered table-hover"
+							ng-show="ticketData.length>0">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Severity</th>
+									<th>Detail</th>
+									<th>RaisedBy</th>
+									<th>Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="ticket in ticketData">
+									<td>{{ticket.ticketId}}</td>
+									<td>{{ticket.ticketSeverity}}</td>
+									<td>Win 95+</td>
+									<td class="center">4</td>
+									<td class="center">X</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="alert alert-danger" ng-hide="ticketData.length>0">
+							No Ticket present to display.
+						</div>
+				</div>
+				<div class="registration">
+						<form role="form">
+							<div id="alerts-container"></div>
+							<fieldset>
+								<div class="form-group">
+									<input class="form-control" placeholder="ticket Details" name="ticketDetails" ng-model="ticket.ticketDetails" type="text" autofocus>
+								</div>
+								<div class="form-group">
+									<input class="form-control" placeholder="ticket Severity" name="ticketSeverity" ng-model="ticket.ticketSeverity" type="text" >
+								</div>
+								<div class="form-group">
+									<input class="form-control" placeholder="ticket RaisedBy" name="ticketRaisedBy" ng-model="ticket.ticketRaisedBy" type="text" >
+								</div>
+								<div class="form-group">
+									<input class="form-control" placeholder="ticket comments" name="comments" ng-model="ticket.comments" type="text" >
+								</div>
+								<a class="btn btn-lg btn-success btn-block" ng-click="create()">Create Ticket </a>
+							</fieldset>
+						</form>
+					</div>
+			</div>
+			private int ticketId; private String ticketRaisedBy; private String
+			ticketDetails; private String ticketSeverity; private Date
+			ticketCreationDate; private String ticketCreatedBy; private String
+			ticketStatus; private String ticketRaisedTo; private String comments;
+</div></div>
+		</div>
+	</div>

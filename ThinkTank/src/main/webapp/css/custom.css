@@ -3,3 +3,5 @@
  background: none repeat scroll 0% 0% #40454F;
  fontsize: 1px;
 }
+
+#map-canvas { height: 800px; width: 800px; margin: 0; padding: 0;}

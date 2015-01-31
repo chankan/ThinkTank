@@ -17,6 +17,9 @@ import javax.ws.rs.core.MediaType;
 import com.chankan.application.thinktank.bean.DonorCenter;
 import com.chankan.application.thinktank.bean.DonorDetails;
 import com.chankan.application.thinktank.bean.DonationTicketDetails;
+import com.chankan.application.thinktank.bean.HospitalMaster;
+import com.chankan.application.thinktank.dao.HospitalMasterDAO;
+import com.chankan.application.thinktank.dao.TicketMasterDAO;
 import com.chankan.application.thinktank.exception.ServiceException;
 
 
@@ -33,12 +36,43 @@ public class DonorResource {
 	
 					/***Hospital URLs
 					 * @throws ServiceException ****/
+	
 	@GET
-	@Path("/hospital/{hospitalId}")
-	public String getHospital(@PathParam("hospitalId") Integer hospitalId) throws ServiceException 
+	@Path("/hospital")
+	public List<HospitalMaster> getHospitals() throws ServiceException 
 	{
+		List<HospitalMaster> hospitalList=null;
+		HospitalMasterDAO hospitalDAO = null; 
 		try
 		{
+			hospitalList = new ArrayList<HospitalMaster>();
+			hospitalDAO = new HospitalMasterDAO();
+			
+			hospitalList = hospitalDAO.getHospital();
+					if(hospitalList==null)
+						throw new Exception();
+		}
+		catch(Exception serviceException)
+		{
+			throw new ServiceException("ServiceHospitalException");
+
+		}
+		return hospitalList;
+	}
+	
+	
+	@GET
+	@Path("/hospital/{hospitalId}")
+	public HospitalMaster getHospital(@PathParam("hospitalId") Integer hospitalId) throws ServiceException 
+	{
+		HospitalMaster hospital = null;
+		try
+		{
+			List<HospitalMaster> hospitalList = getHospitals();
+			hospital = hospitalList.get(hospitalId);
+			
+			if(hospital==null)
+				throw new Exception();
 			
 		}
 		catch(Exception serviceException)
@@ -46,7 +80,7 @@ public class DonorResource {
 			throw new ServiceException("ServiceHospitalException");
 
 		}
-		return "Hello ThinkTank";
+		return hospital;
 	}
 	
 	@POST
@@ -70,10 +104,19 @@ public class DonorResource {
 	@Path("/donorCenter")
 	@GET
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public List<DonorCenter> getDonorCenter() throws ServiceException
+	public List<HospitalMaster> getDonorCenters() throws ServiceException
 	{
+		
+		List<HospitalMaster> donorCenterList=null;
+		HospitalMasterDAO hospitalDAO = null; 
 		try
 		{
+			donorCenterList = new ArrayList<HospitalMaster>();
+			hospitalDAO = new HospitalMasterDAO();
+			
+			donorCenterList = hospitalDAO.getDonationCenter();
+					if(donorCenterList==null)
+						throw new Exception();
 		}
 		catch(Exception serviceException)
 		{
@@ -96,6 +139,29 @@ public class DonorResource {
 
 		}
 		return null;
+	}
+	
+	@GET
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public HospitalMaster getDonorCenter(@PathParam("donorCenterId") Integer donorCenterId) throws ServiceException
+	{
+		List<HospitalMaster> donorCenterList=null;
+		HospitalMaster donorCenter=null;
+		try
+		{
+			donorCenterList  = getDonorCenters();
+			donorCenter = donorCenterList.get(donorCenterId);
+		
+			if(donorCenter==null)
+				throw new Exception();
+		}
+		catch(Exception serviceException)
+		{
+			throw new ServiceException("ServiceDonorDetailException");
+
+		}
+		
+		return donorCenter;
 	}
 	
 					/****Donor URLs
@@ -168,8 +234,16 @@ public class DonorResource {
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public List<DonationTicketDetails> getTickets() throws ServiceException
 	{
+		List<DonationTicketDetails> ticketList =  new ArrayList<DonationTicketDetails>();
+		TicketMasterDAO ticketDAO = new TicketMasterDAO();
 		try
 		{
+			
+			/*	ticketList = ticketDAO.getTickets();
+		
+			if(ticketList==null)
+				throw new Exception();
+			*/
 			DonationTicketDetails ticket = new  DonationTicketDetails();
 			ticket.setTicketId(1);
 			ticket.setTicketRaisedBy("Rampur Hospital");
@@ -182,7 +256,7 @@ public class DonorResource {
 		}
 		catch(Exception serviceException)
 		{
-			throw new ServiceException("ServiceDonorDetailException");
+			throw new ServiceException("ServiceDonationTicketDetailException");
 		}
 		
 		
