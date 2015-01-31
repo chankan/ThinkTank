@@ -1,4 +1,7 @@
 package com.chankan.application.thinktank.bean;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class HospitalMaster {
 
 	private int hospitalId;
