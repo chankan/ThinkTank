@@ -58,19 +58,32 @@ angular.module('project', [ 'ngSanitize', 'ngRoute', 'ngResource', 'mgcrea.ngStr
 	};
 	$scope.get();	
 })
-.controller('SearchCtrl', function($scope, $routeParams, TicketRes, DonorCenterRes) {
-	$scope.map=getMap();
+.controller('SearchCtrl', function($scope, $routeParams, TicketRes, DonorCenterRes, $select) {
+	$scope.map=getMap();	
 	$scope.ticketId = $routeParams.ticketId;
+	$scope.KmList=[{value: 1, label:"1 KM"},{value: 2, label:"2 KM"},{value: 3, label:"3 KM"},{value: 4, label:"4 KM"},{value: 5, label:"5 KM"},];
 	$scope.get=function(){
 		TicketRes.get({ticketId:$scope.ticketId},function(response){if(response){$scope.ticket=response;}}, function(){$scope.ticket=null;});
-		DonorCenterRes.get({},function(response){if(response){if(Array.isArray(response.donationTicketDetailss)){ $scope.donorCenterList=response.donationTicketDetailss;}else{$scope.donorCenterList=[response.donationTicketDetailss];}}}, function(){$scope.donorCenterList=[];});
-
+		DonorCenterRes.get({},function(response){if(response){if(Array.isArray(response.hospitalMaster)){ $scope.donorCenterList=response.hospitalMaster;}else{$scope.donorCenterList=[response.hospitalMaster];}}}, function(){$scope.donorCenterList=[];});
 	};
 	$scope.popover = {
 			  "title": "Title",
 			  "content": "Hello Popover<br />This is a multiline message!"
 			};
 	$scope.get();	
+	$scope.message="SDFS";
+	$scope.load=function(){
+//		angular.forEach($scope.donorCenterList,function(value,key){if(value.hospitalId==$scope.selectedCenter){}})
+//		$scope.selectedCenter;
+		var marker = new google.maps.Marker({
+			    position: new google.maps.LatLng( $scope.selectedCenter.mapLongitude, $scope.selectedCenter.mapLatitude),
+			    map: $scope.map,
+			    title: 'Click to zoom'
+			  });
+
+//		$scope.message=$scope.selectedCenter.mapLatitude;
+		$scope.map.panTo(marker.getPosition());
+	};
 //	var myPopover = $popover(element, {title: 'My Title', content: 'My Content'});
 //	myPopover.$show();
 //	$scope.popover = {
