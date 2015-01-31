@@ -7,29 +7,14 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import com.chankan.application.thinktank.bean.DonationTicketDetails;
+import com.chankan.application.thinktank.bean.DonorClinicalDetails;
 import com.chankan.application.thinktank.bean.DonorDetails;
-import com.chankan.application.thinktank.bean.HospitalMaster;
 import com.chankan.application.thinktank.commonUtils.DatabaseUtil;
 
-public class DonorMasterDAO {
-	
-	public List<DonorDetails> getDonors()
-	{
-	/*
-	 * Jitendra: This will list all donor present in the DB
-	 * 
-	 * */
-		Session session = DatabaseUtil.getSession();
-		List<DonorDetails> donorList = session.createCriteria(DonorDetails.class).list();
-		DatabaseUtil.closeSession(session);
+public class DonorClinicalDataDAO
+{
 
-		return donorList;
-	}
-	
-
-	
-	public DonorDetails getDonorById(int ID)
+	public DonorClinicalDetails getDonorClinicalDataById(int ID)
 	{
 		/*
 		 * Get donor by single ID
@@ -37,10 +22,10 @@ public class DonorMasterDAO {
 		
 		Session session = DatabaseUtil.getSession();
 		
-		Criteria crieteria= session.createCriteria(DonorDetails.class);
+		Criteria crieteria= session.createCriteria(DonorClinicalDetails.class);
 		crieteria.add(Restrictions.eq("donorDetailsID", ID));
 		
-		List <DonorDetails> singleDonor = crieteria.list();
+		List <DonorClinicalDetails> singleDonor = crieteria.list();
 		DatabaseUtil.closeSession(session);
 		if (singleDonor != null && singleDonor.size() == 1)
 		{
@@ -50,21 +35,23 @@ public class DonorMasterDAO {
 
 		return null;
 		
-		
 	}
-	public DonorDetails addDonor(DonorDetails newDonor) throws Exception
+	
+	
+	public DonorClinicalDetails UpdateAddClinicalData(DonorClinicalDetails clinicalData)
 	{
+		
 		Session session = DatabaseUtil.getSession();
 		Transaction tx = session.beginTransaction();
 		try
 		{
-			if(newDonor.getDonorDetailsID()>=0)
+			if(clinicalData.getDonorDetailsID()>=0)
 			{
-				session.update(newDonor);
+				session.update(clinicalData);
 			}
 			else
 			{
-				session.save(newDonor);
+				session.save(clinicalData);
 			}
 			
 			tx.commit();
@@ -78,14 +65,10 @@ public class DonorMasterDAO {
 		}
 		DatabaseUtil.closeSession(session);
 
-		return newDonor;
+		return clinicalData;
+		
+		
 	}
-	
-	
-	
-
-	
-	
 	
 	
 	

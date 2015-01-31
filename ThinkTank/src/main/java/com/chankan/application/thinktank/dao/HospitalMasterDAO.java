@@ -35,7 +35,7 @@ public class HospitalMasterDAO {
 		 */
 		
 		
-		int i =0;
+		int i =1;
 		Session session = DatabaseUtil.getSession();
 		Criteria crieteria = session.createCriteria(HospitalMaster.class);
 		crieteria.add(Restrictions.eq("isDonationCenter", i));
