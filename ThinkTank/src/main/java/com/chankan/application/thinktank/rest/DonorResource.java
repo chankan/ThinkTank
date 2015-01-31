@@ -233,10 +233,10 @@ public class DonorResource {
 	}
 	
 	
-	@Path("/ticket/{Ticket}")
+	@Path("/ticket")
 	@POST
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public DonationTicketDetails registerTicket(@PathParam("Ticket") DonationTicketDetails newTicket) throws ServiceException
+	public DonationTicketDetails registerTicket(DonationTicketDetails newTicket) throws ServiceException
 	{
 		try
 		{
