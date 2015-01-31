@@ -69,4 +69,20 @@ public class DonorDonationStatus {
 		this.comments = comments;
 	}
 
+	public int getDonorClinicalID() {
+		return donorClinicalID;
+	}
+
+	public void setDonorClinicalID(int donorClinicalID) {
+		this.donorClinicalID = donorClinicalID;
+	}
+
+	public int getDonationTicketID() {
+		return donationTicketID;
+	}
+
+	public void setDonationTicketID(int donationTicketID) {
+		this.donationTicketID = donationTicketID;
+	}
+
 }

@@ -5,7 +5,7 @@
 <hibernate-mapping>
 	<class name="com.chankan.application.thinktank.bean.PlatletsDonationDetails"
 		table="Platlets_Donation_Details">
-		<id name="hospitalId" type="java.lang.Integer">
+		<id name="platletDonationDetailsID" type="java.lang.Integer">
 			<column name="Platlets_Donation_Details_ID" />
 			<generator class="identity" />
 		</id>
