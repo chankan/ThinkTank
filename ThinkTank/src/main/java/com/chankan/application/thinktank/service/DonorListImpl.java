@@ -13,4 +13,16 @@ public class DonorListImpl {
 		
 	}
 
+	public void addDonors() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public DonorDetails getDonorByID(Integer donorId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+
 }
