@@ -234,32 +234,19 @@ public class DonorResource {
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public List<DonationTicketDetails> getTickets() throws ServiceException
 	{
-		List<DonationTicketDetails> ticketList =  new ArrayList<DonationTicketDetails>();
-		TicketMasterDAO ticketDAO = new TicketMasterDAO();
+		List<DonationTicketDetails> ticketList = null; 
 		try
 		{
-			
-			/*	ticketList = ticketDAO.getTickets();
+			TicketMasterDAO ticketDAO = new TicketMasterDAO();	
+			ticketList = ticketDAO.getTickets();
 		
 			if(ticketList==null)
-				throw new Exception();
-			*/
-			DonationTicketDetails ticket = new  DonationTicketDetails();
-			ticket.setTicketId(1);
-			ticket.setTicketRaisedBy("Rampur Hospital");
-			ticket.setTicketRaisedTo("Gabbar Singh");
-			ticket.setTicketCreationDate(new Date());
-			
-			ticketList.add(ticket);
-			
-			
+				throw new Exception();	
 		}
 		catch(Exception serviceException)
 		{
 			throw new ServiceException("ServiceDonationTicketDetailException");
 		}
-		
-		
 		
 		return ticketList;
 	}
@@ -288,35 +275,27 @@ public class DonorResource {
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public DonationTicketDetails getTicket(@PathParam("ticketId") Integer ticketId) throws ServiceException
 	{
+		List<DonationTicketDetails> donorTicketList=null;
+		DonationTicketDetails donationTicketDetails=null;
 		try
 		{
-				}
+			donorTicketList  = getTickets();
+			donationTicketDetails = donorTicketList.get(ticketId);
+		
+			if(donationTicketDetails==null)
+				throw new Exception();
+		}
 		catch(Exception serviceException)
 		{
 			throw new ServiceException("ServiceDonorTicketDetailException");
 			
 		}
 		
-		return ticketList.get(ticketId.intValue());
+		return donationTicketDetails;
 	}
 	
 	
 	
-	@Path("/ticketStatus")
-	@GET
-	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public DonationTicketDetails getTicketStatus() throws ServiceException
-	{
-		try
-		{
-		}
-		catch(Exception serviceException)
-		{
-			throw new ServiceException("ServiceDonorTicketDetailException");
 
-		}
-		
-		return null;
-	}
 	
 }
