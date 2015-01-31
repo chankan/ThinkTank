@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.chankan.application.thinktank.bean.HospitalMaster;
 import com.chankan.application.thinktank.dao.HospitalMasterDAO;
+import com.chankan.application.thinktank.dao.TicketMasterDAO;
 
 public class HospitalServiceImpl {
 	
@@ -18,6 +19,17 @@ public class HospitalServiceImpl {
 	{
 		HospitalMasterDAO dao = new HospitalMasterDAO();
 		return dao.getDonationCenter();
+	}
+	
+	
+	public HospitalMaster addHospitalMaster(HospitalMaster hsopitalMaster)
+	{
+		HospitalMasterDAO dao = new HospitalMasterDAO();
+		
+		dao.addHospital(hsopitalMaster);
+		
+		
+		return hsopitalMaster;
 	}
 
 }

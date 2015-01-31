@@ -3,6 +3,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import com.chankan.application.thinktank.bean.DonationTicketDetails;
@@ -45,6 +46,35 @@ public class HospitalMasterDAO {
 	
 	}
 	
+	
+	public HospitalMaster addHospital(HospitalMaster newHospital)
+	{
+		Session session = DatabaseUtil.getSession();
+		Transaction tx = session.beginTransaction();
+		try
+		{
+			if(newHospital.getHospitalId()>=0)
+			{
+				session.update(newHospital);
+			}
+			else
+			{
+				session.save(newHospital);
+			}
+			
+			tx.commit();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			tx.rollback();
+			DatabaseUtil.closeSession(session);
+			throw e;
+		}
+		DatabaseUtil.closeSession(session);
+
+		return newHospital;
+	}
 	
 
 }
