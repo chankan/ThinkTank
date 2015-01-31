@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Dec 8, 2014 9:27:05 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-	<class name="com.mastek.topcoders.smartkanteen.bean.Caterer"
+	<class name="com.chankan.application.thinktank.bean.PlateletsDonationDetails"
 		table="Platlets_Donation_Details">
 		<id name="hospitalId" type="java.lang.Integer">
 			<column name="Platlets_Donation_Details_ID" />

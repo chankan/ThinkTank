@@ -34,8 +34,24 @@ public class DonorResource {
 					/***Hospital URLs
 					 * @throws ServiceException ****/
 	@GET
+	@Path("/hospital/{hospitalId}")
+	public String getHospital(@PathParam("hospitalId") Integer hospitalId) throws ServiceException 
+	{
+		try
+		{
+			
+		}
+		catch(Exception serviceException)
+		{
+			throw new ServiceException("ServiceHospitalException");
+
+		}
+		return "Hello ThinkTank";
+	}
+	
+	@POST
 	@Path("/hospital")
-	public String getHospital() throws ServiceException 
+	public String updateHospital() throws ServiceException 
 	{
 		try
 		{
@@ -47,7 +63,7 @@ public class DonorResource {
 		}
 		return "Hello ThinkTank";
 	}
-		
+	
 				/******DonorCenter URLs
 				 * @throws ServiceException *******/
 	
