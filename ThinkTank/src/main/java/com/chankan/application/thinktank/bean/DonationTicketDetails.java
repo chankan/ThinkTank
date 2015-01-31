@@ -2,7 +2,9 @@ package com.chankan.application.thinktank.bean;
 
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 public class DonationTicketDetails {
 
 private int ticketId;
