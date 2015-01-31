@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 8, 2014 9:27:05 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.chankan.application.thinktank.bean.HospitalMaster"
+		table="Hospital_Master">
+		<id name="hospitalId" type="java.lang.Integer">
+			<column name="Hospital_ID" />
+			<generator class="identity" />
+		</id>
+		<property name="hospitalName" type="java.lang.String">
+			<column name="Name" length="1000" />
+		</property>
+		<property name="hospitalAddress" type="java.lang.String">
+			<column name="Address" length="4000" />
+		</property>
+		<property name="city" type="java.lang.String">
+			<column name="City" length="500" />
+		</property>		
+		<property name="state" type="java.lang.String">
+			<column name="State" length="500" />
+		</property>		
+		<property name="pinCode" type="java.lang.String">
+			<column name="Pin_Code" length="10" />
+		</property>		
+		<property name="mapLatitude" type="java.lang.String">
+			<column name="Map_LI" length="500" />
+		</property>		
+		<property name="mapLongitude" type="java.lang.String">
+			<column name="Map_LA" length="500" />
+		</property>			
+		<property name="primaryPhoneNo" type="java.lang.String">
+			<column name="Primary_Phone_No" length="12" />
+		</property>		
+		<property name="secondaryPhoneNo" type="java.lang.String">
+			<column name="Secondary_Phone_No" length="12" />
+		</property>			
+		<property name="isDonationCenter" type="java.lang.Integer">
+			<column name="Is_DonnationCenter" length="1" />
+		</property>	
+		<property name="comments" type="java.lang.String">
+			<column name="Comments" length="8000" />
+		</property>			
+	</class>
+</hibernate-mapping>

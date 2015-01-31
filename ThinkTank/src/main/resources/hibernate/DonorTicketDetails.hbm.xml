@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 8, 2014 9:27:05 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.chankan.application.thinktank.bean.DonationTicketDetails"
+		table="Donation_Ticket_Details">
+		<id name="ticketId" type="java.lang.Integer">
+			<column name="Ticket_ID" />
+			<generator class="identity" />
+		</id>
+		<property name="ticketRaisedBy" type="java.lang.String">
+			<column name="Ticket_Raised_By" length="1000"/>
+		</property>
+		<property name="ticketDetails" type="java.lang.String">
+			<column name="Ticket_Details" length="4000" />
+		</property>
+		<property name="ticketSeverity" type="java.lang.String">
+			<column name="Ticket_Severity" length="500" />
+		</property>		
+		<property name="ticketCreationDate" type="date">
+			<column name="Ticket_Creation_Date" length="8" />
+		</property>		
+		<property name="ticketCreatedBy" type="java.lang.String">
+			<column name="Ticket_Created_By" length="500" />
+		</property>				
+		<property name="ticketStatus" type="java.lang.String">
+			<column name="Ticket_Status" length="10" />
+		</property>
+		<property name="ticketRaisedTo" type="java.lang.String">
+			<column name="Ticket_Raised_To" length="500" />
+		</property>					
+		<property name="comments" type="java.lang.String">
+			<column name="Comments" length="8000" />
+		</property>			
+	</class>
+</hibernate-mapping>

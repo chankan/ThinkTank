@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 8, 2014 9:27:05 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.mastek.topcoders.smartkanteen.bean.Caterer"
+		table="Platlets_Donation_Details">
+		<id name="hospitalId" type="java.lang.Integer">
+			<column name="Platlets_Donation_Details_ID" />
+			<generator class="identity" />
+		</id>
+		<property name="hospitalID" type="java.lang.Integer">
+			<column name="Hospital_ID" length="1" />
+		</property>	
+		<property name="donorDetailsID" type="java.lang.Integer">
+			<column name="Donor_Details_ID" length="1" />
+		</property>			
+		<property name="donorClinicalID" type="java.lang.Integer">
+			<column name="Donor_Clinical_ID" length="1" />
+		</property>				
+		<property name="ticketID" type="java.lang.Integer">
+			<column name="Ticket_ID" length="1" />
+		</property>			
+		<property name="donationDate" type="date">
+			<column name="Donation_Date" length="8" />
+		</property>		
+		<property name="donationType" type="java.lang.String">
+			<column name="Donation_Type" length="100" />
+		</property>			
+		<property name="comments" type="java.lang.String">
+			<column name="Comments" length="8000" />
+		</property>			
+	</class>
+</hibernate-mapping>

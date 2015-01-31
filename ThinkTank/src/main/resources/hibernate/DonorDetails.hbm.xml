@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 8, 2014 9:27:05 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.mastek.topcoders.smartkanteen.bean.Caterer"
+		table="Donor_Details">
+		<id name="donorDetailsID" type="java.lang.Integer">
+			<column name="Donor_Details_ID" />
+			<generator class="identity" />
+		</id>
+		<property name="donorName" type="java.lang.String">
+			<column name="Donor_Name" length="1000" />
+		</property>			
+		<property name="donorOfficeAddress" type="java.lang.String">
+			<column name="Donor_Office_Address" length="4000" />
+		</property>			
+		<property name="donorOfficeCity" type="java.lang.String">
+			<column name="Donor_Office_City" length="500" />
+		</property>
+		<property name="donorOfficeState" type="java.lang.String">
+			<column name="Donor_Office_State" length="500" />
+		</property>		
+		<property name="donorOfficePinCode" type="java.lang.String">
+			<column name="Donor_Office_Pin_Code" length="10" />
+		</property>		
+		<property name="donorHomeAddress" type="java.lang.String">
+			<column name="Donor_Home_Address" length="4000" />
+		</property>			
+		<property name="donorHomeCity" type="java.lang.String">
+			<column name="Donor_Home_City" length="500" />
+		</property>
+		<property name="donorHomeState" type="java.lang.String">
+			<column name="Donor_Home_State" length="500" />
+		</property>		
+		<property name="donorHomePinCode" type="java.lang.String">
+			<column name="Donor_Home_Pin_Code" length="10" />
+		</property>	
+		<property name="donorOfficeMapLatitude" type="java.lang.String">
+			<column name="Donor_Office_Map_LI" length="500" />
+		</property>
+		<property name="donorOfficeMapLongitude" type="java.lang.String">
+			<column name="Donor_Office_Map_LA" length="500" />
+		</property>
+		<property name="donorHomeMapLatitude" type="java.lang.String">
+			<column name="Donor_Home_Map_LI" length="500" />
+		</property>
+		<property name="donorHomeMapLongitude" type="java.lang.String">
+			<column name="Donor_Home_Map_LA" length="500" />
+		</property>		
+		<property name="donorPrimaryNo" type="java.lang.String">
+			<column name="Donor_Primary_Phone_No" length="12" />
+		</property>		
+		<property name="donorSecondaryNo" type="java.lang.String">
+			<column name="Donor_Secondary_Phone_No" length="12" />
+		</property>			
+		<property name="donorEmailId" type="java.lang.String">
+			<column name="Donor_Email_Address" length="500" />
+		</property>		
+		<property name="donorBloodGroup" type="java.lang.String">
+			<column name="Donor_Blood_Group" length="3" />
+		</property>		
+		<property name="donorType" type="java.lang.String">
+			<column name="Donor_Type" length="20" />
+		</property>			
+		<property name="lastDonationDate" type="date">
+			<column name="Last_Donation_Date" length="8" />
+		</property>			
+		<property name="comments" type="java.lang.String">
+			<column name="Comments" length="8000" />
+		</property>			
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 8, 2014 9:27:05 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.mastek.topcoders.smartkanteen.bean.Caterer"
+		table="Donor_Clinical_Details">
+		<id name="clinicalID" type="java.lang.Integer">
+			<column name="Donor_Clinical_ID" />
+			<generator class="identity" />
+		</id>
+		<property name="donorDetailsID" type="java.lang.Integer">
+			<column name="Donor_Details_ID" length="1" />
+		</property>			
+		<property name="donorDateOfBirth" type="date">
+			<column name="DOB" length="8" />
+		</property>			
+		<property name="sex" type="java.lang.String">
+			<column name="Sex" length="1" />
+		</property>	
+		<property name="weight" type="java.lang.Integer">
+			<column name="Weight" length="1" />
+		</property>		
+		<property name="lastPlatletDonationDate" type="date">
+			<column name="Last_Platletes_Donation_Date" length="8" />
+		</property>		
+		<property name="lastBloodDonationDate" type="date">
+			<column name="Last_Blood_Donation_Date" length="8" />
+		</property>			
+		<property name="status" type="java.lang.Integer">
+			<column name="Status" length="1" />
+		</property>		
+		<property name="isDonationCenter" type="java.lang.Integer">
+			<column name="Is_Suffering_From_Diseases" length="1" />
+		</property>		
+		<property name="isDrugConsumption" type="java.lang.Integer">
+			<column name="Is_Drug_Consumption" length="1" />
+		</property>			
+		<property name="isPregnancySymptoms" type="java.lang.Integer">
+			<column name="Is_Pregnancy_Symptoms" length="1" />
+		</property>	
+		<property name="hemoglobinLevel" type="java.lang.Decimal">
+			<column name="Hemoglobin_Level" length="2" />
+		</property>			
+		<property name="comments" type="java.lang.String">
+			<column name="Comments" length="8000" />
+		</property>			
+	</class>
+</hibernate-mapping>
