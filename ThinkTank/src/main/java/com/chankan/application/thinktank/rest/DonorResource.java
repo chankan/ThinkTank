@@ -113,7 +113,7 @@ public class DonorResource {
 			throw new ServiceException("ServiceDonorCenterException");
 
 		}
-		return null;
+		return donorCenterList;
 	}
 	
 	@Path("/donorCenter/{donorCenterId}")

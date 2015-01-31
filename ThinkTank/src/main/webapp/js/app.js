@@ -4,7 +4,7 @@ function getMap() {
 			lat : -34.397,
 			lng : 150.644
 		},
-		zoom : 15
+		zoom : 12
 	};
 	var map = new google.maps.Map(document.getElementById('map-canvas'),
 			mapOptions);
@@ -16,8 +16,16 @@ angular.module('project', [ 'ngSanitize', 'ngRoute', 'ngResource', 'mgcrea.ngStr
 	var service = $resource('rest/service/ticket/:ticketId',{ticketId: '@ticketId'});
 	return service;
 	} ])
+	.factory('TicketRes1',[ '$resource', function($resource) {
+		var service = $resource('rest/service/ticket');
+		return service;
+	} ])
 	.factory('DonorCenterRes',[ '$resource', function($resource) {
 		var service = $resource('rest/service/donorCenter');
+		return service;
+	} ])
+	.factory('DonorRes',[ '$resource', function($resource) {
+		var service = $resource('rest/service/donor');
 		return service;
 	} ])
 .config(function($routeProvider) {
@@ -25,6 +33,10 @@ angular.module('project', [ 'ngSanitize', 'ngRoute', 'ngResource', 'mgcrea.ngStr
 	.when('/', {
 		controller : 'HomeCtrl',
 		templateUrl : 'view/home.html'
+	})
+	.when('/tickenew', {
+		controller : 'TicketNewCtrl',
+		templateUrl : 'view/tickeNew.html'
 	})
 	.when('/ticketlist', {
 		controller : 'TicketListCtrl',
@@ -45,6 +57,13 @@ angular.module('project', [ 'ngSanitize', 'ngRoute', 'ngResource', 'mgcrea.ngStr
 .controller('HomeCtrl', function($scope) {
 	$scope.message="hello";
 })
+.controller('TicketNewCtrl', function($scope, TicketRes1) {
+	$scope.ticket={ticketId:-1,ticketRaisedBy:"",ticketDetails:"",ticketSeverity:"Low",ticketStatus:"Open",comments:"New Request"};
+	$scope.create=function(){
+		TicketRes1.save($scope.ticket,function(response){if(response){alert("Ticket generated");}}, function(){alert("Ticket not generated");});
+	};
+//	$scope.get();
+})
 .controller('TicketListCtrl', function($scope, TicketRes) {
 	$scope.get=function(){
 		TicketRes.get({},function(response){if(response){if(Array.isArray(response.donationTicketDetails)){ $scope.ticketData=response.donationTicketDetails;}else{$scope.ticketData=[response.donationTicketDetails];}}}, function(){$scope.ticketData=[];});
@@ -58,13 +77,14 @@ angular.module('project', [ 'ngSanitize', 'ngRoute', 'ngResource', 'mgcrea.ngStr
 	};
 	$scope.get();	
 })
-.controller('SearchCtrl', function($scope, $routeParams, TicketRes, DonorCenterRes, $select) {
+.controller('SearchCtrl', function($scope, $routeParams, TicketRes, DonorCenterRes, $select, DonorRes) {
 	$scope.map=getMap();	
 	$scope.ticketId = $routeParams.ticketId;
 	$scope.KmList=[{value: 1, label:"1 KM"},{value: 2, label:"2 KM"},{value: 3, label:"3 KM"},{value: 4, label:"4 KM"},{value: 5, label:"5 KM"},];
 	$scope.get=function(){
 		TicketRes.get({ticketId:$scope.ticketId},function(response){if(response){$scope.ticket=response;}}, function(){$scope.ticket=null;});
 		DonorCenterRes.get({},function(response){if(response){if(Array.isArray(response.hospitalMaster)){ $scope.donorCenterList=response.hospitalMaster;}else{$scope.donorCenterList=[response.hospitalMaster];}}}, function(){$scope.donorCenterList=[];});
+		DonorRes.get({},function(response){if(response){if(Array.isArray(response.donorDetailss)){ $scope.donorList=response.donorDetails;}else{$scope.donorList=response.donorDetails;}}}, function(){$scope.donorList=[];});
 	};
 	$scope.popover = {
 			  "title": "Title",
@@ -78,8 +98,17 @@ angular.module('project', [ 'ngSanitize', 'ngRoute', 'ngResource', 'mgcrea.ngStr
 		var marker = new google.maps.Marker({
 			    position: new google.maps.LatLng( $scope.selectedCenter.mapLongitude, $scope.selectedCenter.mapLatitude),
 			    map: $scope.map,
-			    title: 'Click to zoom'
+			    title: ($scope.selectedCenter.hospitalName+":"+$scope.selectedCenter.hospitalAddress)
 			  });
+		
+//		for(var i=0;i< 10;i++){
+		angular.forEach($scope.donorList, function(value,key){
+			var marker = new google.maps.Marker({
+			    position: new google.maps.LatLng( value.donorHomeMapLongitude, value.donorHomeMapLatitude),
+			    map: $scope.map,
+			    title: (value.donorName+":"+value.donorPrimaryNo)
+			  });
+		});
 
 //		$scope.message=$scope.selectedCenter.mapLatitude;
 		$scope.map.panTo(marker.getPosition());

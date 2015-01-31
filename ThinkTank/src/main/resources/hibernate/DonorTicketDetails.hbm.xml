@@ -7,7 +7,7 @@
 		table="Donation_Ticket_Details">
 		<id name="ticketId" type="java.lang.Integer">
 			<column name="Ticket_ID" />
-			<generator class="identity" />
+			<generator class="increment" />
 		</id>
 		<property name="ticketRaisedBy" type="java.lang.String">
 			<column name="Ticket_Raised_By" length="1000"/>
