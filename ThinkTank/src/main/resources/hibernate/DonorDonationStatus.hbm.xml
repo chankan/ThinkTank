@@ -17,10 +17,11 @@
 		</property>			
 		<property name="donorClinicalID" type="java.lang.Integer">
 			<column name="Donor_Clinical_ID" length="1" />
-		</property>				
-		<property name="ticketID" type="java.lang.Integer">
+		</property>
+		<property name="donationTicketID" type="java.lang.Integer">
 			<column name="Ticket_ID" length="1" />
-		</property>				
+		</property>					
+				
 		<property name="donationType" type="java.lang.String">
 			<column name="Donation_Type" length="100" />
 		</property>		

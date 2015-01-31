@@ -11,6 +11,7 @@ public class DonorDonationStatus {
 	private String donationType;
 	private int status;
 	private String comments;
+	private int donationTicketID;
 
 	public int getDonorDonationStatusID() {
 		return donorDonationStatusID;

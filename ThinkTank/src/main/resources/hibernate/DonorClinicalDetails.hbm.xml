@@ -30,7 +30,7 @@
 		<property name="status" type="java.lang.Integer">
 			<column name="Status" length="1" />
 		</property>		
-		<property name="isDonationCenter" type="java.lang.Integer">
+		<property name="isSufferingFromDiseases" type="java.lang.Integer">
 			<column name="Is_Suffering_From_Diseases" length="1" />
 		</property>		
 		<property name="isDrugConsumption" type="java.lang.Integer">
