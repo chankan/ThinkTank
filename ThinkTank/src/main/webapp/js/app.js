@@ -13,8 +13,12 @@ function getMap() {
 
 angular.module('project', [ 'ngSanitize', 'ngRoute', 'ngResource', 'mgcrea.ngStrap' ])
 .factory('TicketRes',[ '$resource', function($resource) {
-	var service = $resource('rest/service/ticket');
+	var service = $resource('rest/service/ticket/:ticketId',{ticketId: '@ticketId'});
 	return service;
+	} ])
+	.factory('DonorCenterRes',[ '$resource', function($resource) {
+		var service = $resource('rest/service/donorCenter');
+		return service;
 	} ])
 .config(function($routeProvider) {
 	$routeProvider
@@ -30,7 +34,7 @@ angular.module('project', [ 'ngSanitize', 'ngRoute', 'ngResource', 'mgcrea.ngStr
 		controller : 'TicketCtrl',
 		templateUrl : 'view/ticket.html'
 	})
-	.when('/donarsearch', {
+	.when('/donorsearch/:ticketId', {
 		controller : 'SearchCtrl',
 		templateUrl : 'view/donorsearch.html'
 	})
@@ -47,11 +51,33 @@ angular.module('project', [ 'ngSanitize', 'ngRoute', 'ngResource', 'mgcrea.ngStr
 	};
 	$scope.get();
 })
-.controller('TicketCtrl', function($scope, $routeParams) {
-	var ticketId = $routeParams.ticketId;
+.controller('TicketCtrl', function($scope, $routeParams, TicketRes) {
+	$scope.ticketId = $routeParams.ticketId;
+	$scope.get=function(){
+		TicketRes.get({ticketId:$scope.ticketId},function(response){if(response){$scope.ticket=response;}}, function(){$scope.ticket=null;});
+	};
+	$scope.get();	
 })
-.controller('SearchCtrl', function($scope, $routeParams) {
-	var map=getMap();
+.controller('SearchCtrl', function($scope, $routeParams, TicketRes, DonorCenterRes) {
+	$scope.map=getMap();
+	$scope.ticketId = $routeParams.ticketId;
+	$scope.get=function(){
+		TicketRes.get({ticketId:$scope.ticketId},function(response){if(response){$scope.ticket=response;}}, function(){$scope.ticket=null;});
+		DonorCenterRes.get({},function(response){if(response){if(Array.isArray(response.donationTicketDetailss)){ $scope.donorCenterList=response.donationTicketDetailss;}else{$scope.donorCenterList=[response.donationTicketDetailss];}}}, function(){$scope.donorCenterList=[];});
+
+	};
+	$scope.popover = {
+			  "title": "Title",
+			  "content": "Hello Popover<br />This is a multiline message!"
+			};
+	$scope.get();	
+//	var myPopover = $popover(element, {title: 'My Title', content: 'My Content'});
+//	myPopover.$show();
+//	$scope.popover = {
+//			  "title": "Title",
+//			  "content": "Hello Popover<br />This is a multiline message!"
+//			};
+//	$scope.popover.$show();
 })
 
 
