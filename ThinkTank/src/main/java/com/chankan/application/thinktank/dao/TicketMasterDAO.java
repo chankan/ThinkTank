@@ -14,7 +14,7 @@ public class TicketMasterDAO {
 	public List<DonationTicketDetails> getTickets()
 	{
 		Session session = DatabaseUtil.getSession();
-		List<DonationTicketDetails> ticketList = session.createCriteria(TicketMasterDAO.class).list();
+		List<DonationTicketDetails> ticketList = session.createCriteria(DonationTicketDetails.class).list();
 		DatabaseUtil.closeSession(session);
 
 		return ticketList;
@@ -25,7 +25,7 @@ public class TicketMasterDAO {
 	{
 		Session session = DatabaseUtil.getSession();
 		
-		Query query = session.createQuery("FROM Menu WHERE itemId= :ID");
+		Query query = session.createQuery("FROM Donation_Ticket_Details WHERE Ticket_ID= :ID");
 		query.setParameter("ticketID", ID);
 		List <DonationTicketDetails> ticketList = query.list();
 		DatabaseUtil.closeSession(session);
