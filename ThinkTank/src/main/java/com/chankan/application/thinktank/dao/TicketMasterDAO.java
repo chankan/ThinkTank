@@ -2,9 +2,11 @@ package com.chankan.application.thinktank.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import com.chankan.application.thinktank.bean.DonationTicketDetails;
 import com.chankan.application.thinktank.commonUtils.DatabaseUtil;
@@ -25,12 +27,15 @@ public class TicketMasterDAO {
 	{
 		Session session = DatabaseUtil.getSession();
 		
-		Query query = session.createQuery("FROM Donation_Ticket_Details WHERE Ticket_ID= :ID");
-		query.setParameter("ticketID", ID);
-		List <DonationTicketDetails> ticketList = query.list();
+		//Query query = session.createQuery("FROM Donation_Ticket_Details WHERE Ticket_ID= :ID");
+		Criteria crieteria= session.createCriteria(DonationTicketDetails.class);
+		crieteria.add(Restrictions.eq("ticketId", ID));
+		
+		List <DonationTicketDetails> ticketList = crieteria.list();
 		DatabaseUtil.closeSession(session);
 		if (ticketList != null && ticketList.size() == 1)
 		{
+			
 			return ticketList.get(0);
 		}
 

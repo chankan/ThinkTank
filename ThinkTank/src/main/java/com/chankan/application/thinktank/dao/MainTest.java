@@ -19,7 +19,7 @@ public class MainTest {
 		
 		System.out.println("Count of tickets+" +aa.getTickets().size());
 		
-		System.out.println("Ticket by ID :"+aa.getTicketsByID(9000));
+		System.out.println("Ticket by ID :"+aa.getTicketsByID(9000).getTicketRaisedBy());
 		
 		
 
