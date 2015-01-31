@@ -21,6 +21,7 @@ import com.chankan.application.thinktank.bean.HospitalMaster;
 import com.chankan.application.thinktank.dao.HospitalMasterDAO;
 import com.chankan.application.thinktank.dao.TicketMasterDAO;
 import com.chankan.application.thinktank.exception.ServiceException;
+import com.chankan.application.thinktank.service.TicketServiceImpl;
 
 
 @Path("/service")
@@ -237,8 +238,8 @@ public class DonorResource {
 		List<DonationTicketDetails> ticketList = null; 
 		try
 		{
-			TicketMasterDAO ticketDAO = new TicketMasterDAO();	
-			ticketList = ticketDAO.getTickets();
+			TicketServiceImpl ticketImpl = new TicketServiceImpl();	
+			ticketList = ticketImpl.getTickets();
 		
 			if(ticketList==null)
 				throw new Exception();	
@@ -252,13 +253,15 @@ public class DonorResource {
 	}
 	
 	
-	@Path("/ticket")
+	@Path("/ticket/{Ticket}")
 	@POST
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public DonationTicketDetails registerTicket() throws ServiceException
+	public DonationTicketDetails registerTicket(@PathParam("Ticket") DonationTicketDetails newTicket) throws ServiceException
 	{
 		try
 		{
+			TicketServiceImpl ticketImpl = new TicketServiceImpl();
+			ticketImpl.addTicket(newTicket);
 		}
 		catch(Exception serviceException)
 		{
@@ -266,7 +269,7 @@ public class DonorResource {
 
 		}
 		
-		return null;
+		return newTicket;
 	}
 	
 	
@@ -275,12 +278,12 @@ public class DonorResource {
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public DonationTicketDetails getTicket(@PathParam("ticketId") Integer ticketId) throws ServiceException
 	{
-		List<DonationTicketDetails> donorTicketList=null;
+		
 		DonationTicketDetails donationTicketDetails=null;
 		try
 		{
-			donorTicketList  = getTickets();
-			donationTicketDetails = donorTicketList.get(ticketId);
+			TicketServiceImpl ticketImpl = new TicketServiceImpl();	
+			donationTicketDetails = ticketImpl.getTicketsByID(ticketId);
 		
 			if(donationTicketDetails==null)
 				throw new Exception();
