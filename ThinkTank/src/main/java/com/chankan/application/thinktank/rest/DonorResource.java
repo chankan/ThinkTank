@@ -213,7 +213,7 @@ public class DonorResource {
 		try
 		{
 			DonorListImpl donorImpl  =  new DonorListImpl();
-			donorImpl.addDonors();
+			donorImpl.addDonors(donorDetails);
 		}
 		catch(Exception serviceException)
 		{

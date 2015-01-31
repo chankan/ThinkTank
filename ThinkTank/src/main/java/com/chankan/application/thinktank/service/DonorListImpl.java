@@ -13,14 +13,27 @@ public class DonorListImpl {
 		
 	}
 
-	public void addDonors() {
+	public DonorDetails addDonors(DonorDetails newDonor) throws Exception
+	{
 		// TODO Auto-generated method stub
+		DonorMasterDAO dao = new DonorMasterDAO();
+		return dao.addDonor(newDonor);
+		
 		
 	}
 
-	public DonorDetails getDonorByID(Integer donorId) {
+	public DonorDetails getDonorByID(Integer donorId)
+	{
+		
+		DonorMasterDAO dao = new DonorMasterDAO();
+		DonorDetails getDoonor =  dao.getDonorById(donorId);
+		
+		return getDoonor;
+		
+		
+		
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 	
 	
