@@ -16,6 +16,10 @@ angular.module('project', [ 'ngSanitize', 'ngRoute', 'ngResource', 'mgcrea.ngStr
 	var service = $resource('rest/service/ticket/:ticketId',{ticketId: '@ticketId'});
 	return service;
 	} ])
+	.factory('DonorCenterRes',[ '$resource', function($resource) {
+		var service = $resource('rest/service/donorCenter');
+		return service;
+	} ])
 .config(function($routeProvider) {
 	$routeProvider
 	.when('/', {
@@ -54,12 +58,18 @@ angular.module('project', [ 'ngSanitize', 'ngRoute', 'ngResource', 'mgcrea.ngStr
 	};
 	$scope.get();	
 })
-.controller('SearchCtrl', function($scope, $routeParams, TicketRes) {
+.controller('SearchCtrl', function($scope, $routeParams, TicketRes, DonorCenterRes) {
 	$scope.map=getMap();
 	$scope.ticketId = $routeParams.ticketId;
 	$scope.get=function(){
 		TicketRes.get({ticketId:$scope.ticketId},function(response){if(response){$scope.ticket=response;}}, function(){$scope.ticket=null;});
+		DonorCenterRes.get({},function(response){if(response){if(Array.isArray(response.donationTicketDetailss)){ $scope.donorCenterList=response.donationTicketDetailss;}else{$scope.donorCenterList=[response.donationTicketDetailss];}}}, function(){$scope.donorCenterList=[];});
+
 	};
+	$scope.popover = {
+			  "title": "Title",
+			  "content": "Hello Popover<br />This is a multiline message!"
+			};
 	$scope.get();	
 //	var myPopover = $popover(element, {title: 'My Title', content: 'My Content'});
 //	myPopover.$show();
