@@ -21,19 +21,12 @@ import com.chankan.application.thinktank.bean.HospitalMaster;
 import com.chankan.application.thinktank.dao.HospitalMasterDAO;
 import com.chankan.application.thinktank.dao.TicketMasterDAO;
 import com.chankan.application.thinktank.exception.ServiceException;
+import com.chankan.application.thinktank.service.DonorListImpl;
 import com.chankan.application.thinktank.service.TicketServiceImpl;
 
 
 @Path("/service")
-public class DonorResource {
-	
-	DonationTicketDetails ticket = new  DonationTicketDetails();
-	DonorDetails donor =  new DonorDetails();
-	
-	List<DonationTicketDetails> ticketList =  new ArrayList<DonationTicketDetails>();
-	List<DonorDetails> donorList =  new ArrayList<DonorDetails>();
-	
-	
+public class DonorResource {	
 	
 					/***Hospital URLs
 					 * @throws ServiceException ****/
@@ -127,7 +120,7 @@ public class DonorResource {
 		return null;
 	}
 	
-	@Path("/donorCenter")
+	@Path("/donorCenter/{donorCenter}")
 	@POST
 	public DonorCenter updateDonorCenter() throws ServiceException
 	{
@@ -173,8 +166,14 @@ public class DonorResource {
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public DonorDetails getDonor(@PathParam("donorId") Integer donorId) throws ServiceException
 	{
+		DonorDetails donorDetails = null;
 		try
 		{
+			DonorListImpl donorListImpl  =  new DonorListImpl();
+			donorDetails = donorListImpl.getDonorByID(donorId);
+				if(donorDetails == null)
+					throw new Exception();
+			
 		}
 		catch(Exception serviceException)
 		{
@@ -182,7 +181,7 @@ public class DonorResource {
 
 		}
 		
-		return donorList.get(1);
+		return donorDetails  ;
 	}
 	
 	@Path("/donor")
@@ -190,15 +189,12 @@ public class DonorResource {
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public List<DonorDetails> getDonors() throws ServiceException
 	{
+		List<DonorDetails> donorList=null;
 		try
 		{
 			
-			donor.setDonorDetailsID(1);
-			donor.setDonorName("Basanti");
-			donor.setDonorType("1");
-			
-			donorList.add(donor);
-
+			DonorListImpl donorImpl = new DonorListImpl();
+			donorList = donorImpl.getDonors();
 		}
 		catch(Exception serviceException)
 		{
@@ -209,13 +205,15 @@ public class DonorResource {
 		return donorList;
 	}
 	
-	@Path("/donor")
+	@Path("/donor/{donorDetail}")
 	@POST
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public DonorDetails updateDonors() throws ServiceException
+	public DonorDetails updateDonors(@PathParam("donorDetail") DonorDetails donorDetails) throws ServiceException
 	{
 		try
 		{
+			DonorListImpl donorImpl  =  new DonorListImpl();
+			donorImpl.addDonors();
 		}
 		catch(Exception serviceException)
 		{
