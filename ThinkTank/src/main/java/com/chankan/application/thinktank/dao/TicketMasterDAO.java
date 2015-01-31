@@ -51,7 +51,15 @@ public class TicketMasterDAO {
 		Transaction tx = session.beginTransaction();
 		try
 		{
-			session.save(newTicket);
+			if(newTicket.getTicketId()>=0)
+			{
+				session.update(newTicket);
+			}
+			else
+			{
+				session.save(newTicket);
+			}
+			
 			tx.commit();
 		}
 		catch (Exception e)
