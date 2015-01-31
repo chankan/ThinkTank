@@ -17,16 +17,17 @@ public class DonorClinicalDetails {
 	private int isSufferingFromDiseases;
 	private int isDrugConsumption;
 	private int isPregnancySymptoms;
-	private Double hemoglobinLevel;
+	private int hemoglobinLevel;
 	private String Comments;
 	
 	
 	
 	
-	public Double getHemoglobinLevel() {
+
+	public int getHemoglobinLevel() {
 		return hemoglobinLevel;
 	}
-	public void setHemoglobinLevel(Double hemoglobinLevel) {
+	public void setHemoglobinLevel(int hemoglobinLevel) {
 		this.hemoglobinLevel = hemoglobinLevel;
 	}
 	public int getClinicalID() {

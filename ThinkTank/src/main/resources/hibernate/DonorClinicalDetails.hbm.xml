@@ -39,8 +39,8 @@
 		<property name="isPregnancySymptoms" type="java.lang.Integer">
 			<column name="Is_Pregnancy_Symptoms" length="1" />
 		</property>	
-		<property name="hemoglobinLevel" type="java.lang.Decimal">
-			<column name="Hemoglobin_Level" length="2" />
+		<property name="hemoglobinLevel" type="java.lang.Integer">
+			<column name="Hemoglobin_Level" length="1" />
 		</property>			
 		<property name="comments" type="java.lang.String">
 			<column name="Comments" length="8000" />
