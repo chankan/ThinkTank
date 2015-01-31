@@ -47,9 +47,12 @@ public class DonorMasterDAO {
 			
 			return singleDonor.get(0);
 		}
-
-		return null;
+		else
+		{
+			
 		
+		return null;
+		}
 		
 	}
 	public DonorDetails addDonor(DonorDetails newDonor) throws Exception

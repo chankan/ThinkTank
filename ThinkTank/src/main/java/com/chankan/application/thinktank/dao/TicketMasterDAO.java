@@ -38,8 +38,12 @@ public class TicketMasterDAO {
 			
 			return ticketList.get(0);
 		}
+		else
+		{
+			return null;
+		}
 
-		return null;
+		
 		
 		
 	}
