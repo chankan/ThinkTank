@@ -18,10 +18,9 @@ import com.chankan.application.thinktank.bean.DonorCenter;
 import com.chankan.application.thinktank.bean.DonorDetails;
 import com.chankan.application.thinktank.bean.DonationTicketDetails;
 import com.chankan.application.thinktank.bean.HospitalMaster;
-import com.chankan.application.thinktank.dao.HospitalMasterDAO;
-import com.chankan.application.thinktank.dao.TicketMasterDAO;
 import com.chankan.application.thinktank.exception.ServiceException;
 import com.chankan.application.thinktank.service.DonorListImpl;
+import com.chankan.application.thinktank.service.HospitalServiceImpl;
 import com.chankan.application.thinktank.service.TicketServiceImpl;
 
 
@@ -36,13 +35,10 @@ public class DonorResource {
 	public List<HospitalMaster> getHospitals() throws ServiceException 
 	{
 		List<HospitalMaster> hospitalList=null;
-		HospitalMasterDAO hospitalDAO = null; 
 		try
 		{
-			hospitalList = new ArrayList<HospitalMaster>();
-			hospitalDAO = new HospitalMasterDAO();
-			
-			hospitalList = hospitalDAO.getHospital();
+			HospitalServiceImpl hospitalImpl = new HospitalServiceImpl();
+			hospitalList = hospitalImpl.getHospital();
 					if(hospitalList==null)
 						throw new Exception();
 		}
@@ -78,18 +74,20 @@ public class DonorResource {
 	}
 	
 	@POST
-	@Path("/hospital")
-	public String updateHospital() throws ServiceException 
+	@Path("/hospital/{hospital}")
+	public HospitalMaster updateHospital(@PathParam("hospital") HospitalMaster hospital) throws ServiceException 
 	{
 		try
 		{
+			HospitalServiceImpl hospitalImpl = new HospitalServiceImpl();
+			hospitalImpl.addHospitalMaster(hospital);
 		}
 		catch(Exception serviceException)
 		{
 			throw new ServiceException("ServiceHospitalException");
 
 		}
-		return "Hello ThinkTank";
+		return hospital;
 	}
 	
 				/******DonorCenter URLs
@@ -102,13 +100,11 @@ public class DonorResource {
 	{
 		
 		List<HospitalMaster> donorCenterList=null;
-		HospitalMasterDAO hospitalDAO = null; 
 		try
 		{
-			donorCenterList = new ArrayList<HospitalMaster>();
-			hospitalDAO = new HospitalMasterDAO();
+			HospitalServiceImpl hospitalImpl = new HospitalServiceImpl();
+			donorCenterList = hospitalImpl.getDonationCenter();
 			
-			donorCenterList = hospitalDAO.getDonationCenter();
 					if(donorCenterList==null)
 						throw new Exception();
 		}
@@ -120,21 +116,7 @@ public class DonorResource {
 		return null;
 	}
 	
-	@Path("/donorCenter/{donorCenter}")
-	@POST
-	public DonorCenter updateDonorCenter() throws ServiceException
-	{
-		try
-		{
-		}
-		catch(Exception serviceException)
-		{
-			throw new ServiceException("ServiceDonorCenterException");
-
-		}
-		return null;
-	}
-	
+	@Path("/donorCenter/{donorCenterId}")
 	@GET
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public HospitalMaster getDonorCenter(@PathParam("donorCenterId") Integer donorCenterId) throws ServiceException
