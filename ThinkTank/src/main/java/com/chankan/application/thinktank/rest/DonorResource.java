@@ -15,10 +15,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.chankan.application.thinktank.bean.DonorCenter;
+import com.chankan.application.thinktank.bean.DonorClinicalDetails;
 import com.chankan.application.thinktank.bean.DonorDetails;
 import com.chankan.application.thinktank.bean.DonationTicketDetails;
 import com.chankan.application.thinktank.bean.HospitalMaster;
 import com.chankan.application.thinktank.exception.ServiceException;
+import com.chankan.application.thinktank.service.DonorClinicalDataImpl;
 import com.chankan.application.thinktank.service.DonorListImpl;
 import com.chankan.application.thinktank.service.HospitalServiceImpl;
 import com.chankan.application.thinktank.service.TicketServiceImpl;
@@ -279,6 +281,49 @@ public class DonorResource {
 	
 	
 	
+							/********ClinicalDetails URLs
+							 * @throws ServiceException *******/
+	@Path("clinicaldata/{donorId}")
+	@GET
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public DonorClinicalDetails getDonorClinicalDetail(@PathParam("donorId") Integer donorId) throws ServiceException
+	{
+		DonorClinicalDetails donorClinicalDetails = null;
+		try
+		{
+			DonorClinicalDataImpl donorClinicalDataImpl  =  new DonorClinicalDataImpl();
+			donorClinicalDetails = donorClinicalDataImpl.getDonorClinicalDataById(donorId);
+				if(donorClinicalDetails == null)
+					throw new Exception();
+			
+		}
+		catch(Exception serviceException)
+		{
+			throw new ServiceException("ServiceDonorDetailException");
 
+		}
+		
+		return donorClinicalDetails  ;
+	}
 	
+	@Path("/clinicaldata/{ClinicalData}")
+	@POST
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public DonorClinicalDetails updateDonorClinicalDetail(@PathParam("ClinicalData") DonorClinicalDetails donorClinicalData) throws ServiceException
+	{
+		DonorClinicalDetails donorClinicalDetails = null;
+		try
+		{
+			DonorClinicalDataImpl donorClinicalDataImpl  =  new DonorClinicalDataImpl();
+			donorClinicalDetails = donorClinicalDataImpl.UpdateAddClinicalData(donorClinicalData);
+				
+		}
+		catch(Exception serviceException)
+		{
+			throw new ServiceException("ServiceDonorDetailException");
+
+		}
+		
+		return donorClinicalDetails  ;
+	}
 }
