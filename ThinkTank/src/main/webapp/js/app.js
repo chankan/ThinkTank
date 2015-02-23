@@ -1,8 +1,8 @@
 function getMap() {
 	var mapOptions = {
 		center : {
-			lat : -34.397,
-			lng : 150.644
+			lat : 19.03902,
+			lng : 72.86190
 		},
 		zoom : 14
 	};
@@ -78,21 +78,25 @@ angular.module('project', [ 'ngSanitize', 'ngRoute', 'ngResource', 'mgcrea.ngStr
 	$scope.get();	
 })
 .controller('SearchCtrl', function($scope, $routeParams, TicketRes, DonorCenterRes, $select, DonorRes) {
-	$scope.map=getMap();	
+//	$scope.map=getMap();	
 	$scope.ticketId = $routeParams.ticketId;
 	$scope.KmList=[{value: 1, label:"1 KM"},{value: 2, label:"2 KM"},{value: 3, label:"3 KM"},{value: 4, label:"4 KM"},{value: 5, label:"5 KM"},];
 	$scope.get=function(){
-		TicketRes.get({ticketId:$scope.ticketId},function(response){if(response){$scope.ticket=response;}}, function(){$scope.ticket=null;});
+//		TicketRes.get({ticketId:$scope.ticketId},function(response){if(response){$scope.ticket=response;}}, function(){$scope.ticket=null;});
 		DonorCenterRes.get({},function(response){if(response){if(Array.isArray(response.hospitalMaster)){ $scope.donorCenterList=response.hospitalMaster;}else{$scope.donorCenterList=[response.hospitalMaster];}}}, function(){$scope.donorCenterList=[];});
-		DonorRes.get({},function(response){if(response){if(Array.isArray(response.donorDetailss)){ $scope.donorList=response.donorDetails;}else{$scope.donorList=response.donorDetails;}}}, function(){$scope.donorList=[];});
+//		DonorRes.get({},function(response){if(response){if(Array.isArray(response.donorDetailss)){ $scope.donorList=response.donorDetails;}else{$scope.donorList=response.donorDetails;}}}, function(){$scope.donorList=[];});
 	};
 	$scope.popover = {
 			  "title": "Title",
 			  "content": "Hello Popover<br />This is a multiline message!"
+//			  "template": "view/ticket.html"
 			};
 	$scope.get();	
 	$scope.message="SDFS";
+	
 	$scope.load=function(){
+		
+		
 //		angular.forEach($scope.donorCenterList,function(value,key){if(value.hospitalId==$scope.selectedCenter){}})
 //		$scope.selectedCenter;
 		var marker = new google.maps.Marker({
@@ -100,15 +104,15 @@ angular.module('project', [ 'ngSanitize', 'ngRoute', 'ngResource', 'mgcrea.ngStr
 			    map: $scope.map,
 			    title: ($scope.selectedCenter.hospitalName+":"+$scope.selectedCenter.hospitalAddress)
 			  });
-		
+//		
 //		for(var i=0;i< 10;i++){
-		angular.forEach($scope.donorList, function(value,key){
-			var marker = new google.maps.Marker({
-			    position: new google.maps.LatLng( value.donorHomeMapLongitude, value.donorHomeMapLatitude),
-			    map: $scope.map,
-			    title: (value.donorName+":"+value.donorPrimaryNo)
-			  });
-		});
+//		angular.forEach($scope.donorList, function(value,key){
+//			var marker = new google.maps.Marker({
+//			    position: new google.maps.LatLng( value.donorHomeMapLongitude, value.donorHomeMapLatitude),
+//			    map: $scope.map,
+//			    title: (value.donorName+":"+value.donorPrimaryNo)
+//			  });
+//		});
 
 //		$scope.message=$scope.selectedCenter.mapLatitude;
 		$scope.map.panTo(marker.getPosition());
