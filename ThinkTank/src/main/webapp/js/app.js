@@ -20,6 +20,10 @@ angular.module('project', [ 'ngSanitize', 'ngRoute', 'ngResource', 'mgcrea.ngStr
 		var service = $resource('rest/service/ticket');
 		return service;
 	} ])
+	.factory('HospitalRes',[ '$resource', function($resource) {
+		var service = $resource('rest/service/hospital/:id',{id:'@id'});
+		return service;
+	} ])
 	.factory('DonorCenterRes',[ '$resource', function($resource) {
 		var service = $resource('rest/service/donorCenter');
 		return service;
@@ -77,14 +81,18 @@ angular.module('project', [ 'ngSanitize', 'ngRoute', 'ngResource', 'mgcrea.ngStr
 	};
 	$scope.get();	
 })
-.controller('SearchCtrl', function($scope, $routeParams, TicketRes, DonorCenterRes, $select, DonorRes) {
-//	$scope.map=getMap();	
+.controller('SearchCtrl', function($scope, $routeParams, TicketRes, DonorCenterRes, $select, DonorRes, HospitalRes) {
+	$scope.map=getMap();	
 	$scope.ticketId = $routeParams.ticketId;
 	$scope.KmList=[{value: 1, label:"1 KM"},{value: 2, label:"2 KM"},{value: 3, label:"3 KM"},{value: 4, label:"4 KM"},{value: 5, label:"5 KM"},];
 	$scope.get=function(){
-//		TicketRes.get({ticketId:$scope.ticketId},function(response){if(response){$scope.ticket=response;}}, function(){$scope.ticket=null;});
+		TicketRes.get({ticketId:$scope.ticketId},function(response){if(response){
+			$scope.ticket=response;
+			HospitalRes.get({id:1},function(response){if(response){$scope.hospital=response;}}, function(){$scope.hospital=null;});
+			
+		}}, function(){$scope.ticket=null;});
 		DonorCenterRes.get({},function(response){if(response){if(Array.isArray(response.hospitalMaster)){ $scope.donorCenterList=response.hospitalMaster;}else{$scope.donorCenterList=[response.hospitalMaster];}}}, function(){$scope.donorCenterList=[];});
-//		DonorRes.get({},function(response){if(response){if(Array.isArray(response.donorDetailss)){ $scope.donorList=response.donorDetails;}else{$scope.donorList=response.donorDetails;}}}, function(){$scope.donorList=[];});
+		DonorRes.get({},function(response){if(response){if(Array.isArray(response.donorDetailss)){ $scope.donorList=response.donorDetails;}else{$scope.donorList=response.donorDetails;}}}, function(){$scope.donorList=[];});
 	};
 	$scope.popover = {
 			  "title": "Title",
