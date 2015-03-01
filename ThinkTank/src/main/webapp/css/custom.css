@@ -1,10 +1,19 @@
-.menubar {
- lineheight: 1px;
- background: none repeat scroll 0% 0% #40454F;
- fontsize: 1px;
-}
+/* .menubar { */
+/*  lineheight: 1px; */
+/*  background: none repeat scroll 0% 0% #40454F; */
+/*  fontsize: 1px; */
+/* } */
 
-#map-canvas { height: 800px; width: 800px; margin: 0; padding: 0;}
-@media(min-width:900px) {
-	#map-canvas { height: 600px; width: 1024px; margin: 0; padding: 0;}
+/* #map-canvas { height: 800px; width: 800px; margin: 0; padding: 0;} */
+/* @media(min-width:900px) { */
+/* 	#map-canvas { height: 600px; width: 1024px; margin: 0; padding: 0;} */
+/* } */
+#map-canvas {
+	width:100%;
+    height:calc(100% - 0);
+    position:absolute;
+    right:16px;
+    top:50px;
+    bottom:0;
+    overflow:hidden;
 }
