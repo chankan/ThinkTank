@@ -220,14 +220,17 @@ public class DonorResource {
 		List<DonationTicketDetails> ticketList = null; 
 		try
 		{
+			System.out.println("get ticket");
 			TicketServiceImpl ticketImpl = new TicketServiceImpl();	
+			System.out.println("TicketServiceImpl");
 			ticketList = ticketImpl.getTickets();
-		
+			
 			if(ticketList==null)
-				throw new Exception();	
+				throw new Exception("no data present");	
 		}
 		catch(Exception serviceException)
 		{
+			serviceException.printStackTrace();
 			throw new ServiceException("ServiceDonationTicketDetailException");
 		}
 		

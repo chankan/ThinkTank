@@ -9,7 +9,7 @@ public class DonorClinicalDataImpl {
 	
 	
 
-	public DonorClinicalDetails UpdateAddClinicalData(DonorClinicalDetails clinicalData)
+	public DonorClinicalDetails UpdateAddClinicalData(DonorClinicalDetails clinicalData) throws Exception
 	{
 		// TODO Auto-generated method stub
 		DonorClinicalDataDAO dao = new DonorClinicalDataDAO();

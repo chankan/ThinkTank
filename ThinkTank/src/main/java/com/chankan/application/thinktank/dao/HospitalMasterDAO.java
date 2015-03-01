@@ -47,7 +47,7 @@ public class HospitalMasterDAO {
 	}
 	
 	
-	public HospitalMaster addHospital(HospitalMaster newHospital)
+	public HospitalMaster addHospital(HospitalMaster newHospital) throws Exception
 	{
 		Session session = DatabaseUtil.getSession();
 		Transaction tx = session.beginTransaction();

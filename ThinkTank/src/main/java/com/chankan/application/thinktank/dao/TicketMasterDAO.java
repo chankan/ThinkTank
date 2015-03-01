@@ -17,7 +17,8 @@ public class TicketMasterDAO {
 	{
 		Session session = DatabaseUtil.getSession();
 		List<DonationTicketDetails> ticketList = session.createCriteria(DonationTicketDetails.class).list();
-		DatabaseUtil.closeSession(session);
+		System.out.println("ticketList"+ticketList);
+//		DatabaseUtil.closeSession(session);
 
 		return ticketList;
 	}

@@ -38,7 +38,7 @@ public class DonorClinicalDataDAO
 	}
 	
 	
-	public DonorClinicalDetails UpdateAddClinicalData(DonorClinicalDetails clinicalData)
+	public DonorClinicalDetails UpdateAddClinicalData(DonorClinicalDetails clinicalData) throws Exception
 	{
 		
 		Session session = DatabaseUtil.getSession();

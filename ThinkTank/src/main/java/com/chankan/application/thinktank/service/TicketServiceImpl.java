@@ -11,6 +11,7 @@ public class TicketServiceImpl {
 	public List<DonationTicketDetails> getTickets()
 	{
 		TicketMasterDAO dao = new TicketMasterDAO();
+		System.out.println("TicketMasterDAO");
 		return dao.getTickets();
 		
 	}
