@@ -1,0 +1,75 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Add New Hospital
+				</div>
+				<div class="panel-body">
+					<form role="form">
+						<div id="alerts-container"></div>
+						<fieldset>
+							<div class="form-group">
+								<input class="form-control" placeholder="Name"
+									name="hospitalMaster" ng-model="hospital.hospitalName"
+									type="text" autofocus>
+							</div>
+							<div class="form-group">
+								<input class="form-control" placeholder="Address"
+									name="hospitalMaster" ng-model="hospital.address"
+									type="text" autofocus>
+							</div>
+							<div class="form-group">
+								<input class="form-control" placeholder="City"
+									name="hospitalMaster" ng-model="hospital.city"
+									type="text" autofocus>
+							</div>
+							<div class="form-group">
+								<input class="form-control" placeholder="State"
+									name="hospitalMaster" ng-model="hospital.state"
+									type="text" autofocus>
+							</div>
+							
+							
+							<div class="form-group">
+								<input class="form-control" placeholder="Pincode"
+									name="hospitalMaster" ng-model="hospital.pincode"
+									type="text" autofocus>
+							</div>
+							<div class="form-group">
+								<input class="form-control" placeholder="Primary Phone No."
+									name="hospitalMaster" ng-model="hospital.primaryPhoneNo"
+									type="text" autofocus>
+							</div>
+							<div class="form-group">
+								<input class="form-control" placeholder="Secondary Phone No."
+									name="hospitalMaster" ng-model="hospital.secondaryPhoneNo"
+									type="text" autofocus>
+							</div>
+							
+							
+							<div class="form-group">
+								<label class="checkbox-inline">
+									<input class="form-control" name="hospitalMaster" 
+									ng-model="hospital.isDonationCenter"
+										type="checkbox" autofocus>
+										Is Donation Center
+								</label>
+							</div>
+							
+							<div class="form-group">
+								<input class="form-control" placeholder="Comments"
+									name="hospitalMaster" ng-model="hospital.comments"
+									type="text" autofocus>
+							</div>
+							
+							<a class="btn btn-lg btn-success btn-block" ng-click="create()">
+							Add Hospital 
+							</a>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
