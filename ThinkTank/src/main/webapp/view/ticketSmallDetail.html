@@ -1,6 +1,11 @@
 <div class="popover" tabindex="-1" ng-show="content">
   <div class="arrow"></div>
-  <h3 class="popover-title">ddgdg</h3>
+  <h3 class="popover-title ">
+  		 <span class="label label-danger text-right">
+   			Severity : {{ticket.ticketSeverity}}
+   		</span>	
+  </h3>
+  
   <div class="popover-content"> 
 <!-- <div class="container"> -->
 <!-- 	<div class="row"> -->
@@ -11,7 +16,30 @@
 <!-- 				</div> -->
 <!-- 				<div class="panel-body"> -->
 					<div class="dataTable_wrapper">
-						<table class="table table-striped table-bordered table-hover" ng-show="ticket">
+						<address>
+							<strong>Ticket Details : </strong> </br>
+							{{ticket.ticketDetails}}		</br>
+							<strong>Ticket Status : </strong>	</br>
+							{{ticket.ticketStatus}}			</br>
+							<strong>Ticket Raised By : </strong></br>
+							{{ticket.ticketRaisedBy}}		</br>
+							
+						</address>
+						
+						
+						<address>
+							<strong>Hospital Name : </strong> </br>
+							{{hospital.hospitalName}}		</br>
+							<strong>Hospital Address : </strong></br>
+							{{ticket.hospitalAddress}}		</br>
+							<strong>Comments : </strong>	</br>
+							{{hospital.comments}}		</br>
+						</address>
+						
+						<button type="button" class="btn btn-primary" >
+								Close Ticket
+						</button>
+						<!-- <table class="table table-striped table-bordered table-hover" ng-show="ticket">
 							<tbody>
 								<tr >
 									<td>Ticket Details</td>
@@ -26,8 +54,8 @@
 									<td>{{ticket.ticketStatus}}</td>
 								</tr>
 							</tbody>
-						</table>
-								{{hospital.hospitalName}}
+						</table> -->
+								
 						<div class="alert alert-danger" ng-hide="ticket">
 							No Ticket present to display.</div>
 					</div>
