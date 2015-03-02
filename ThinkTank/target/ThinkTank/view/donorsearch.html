@@ -1,0 +1,46 @@
+<div class="navbar navbar-default navbar-static-top">
+  <div class="container">
+<!--  	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> -->
+      <ul class="nav navbar-nav">
+        <li class="" data-placement="bottom-left" data-template="view/tttt.html"
+			data-animation="am-flip-x" bs-popover="popover"><a href="">Donor List</a></li>
+        <li><a href="#">Link</a></li>
+        </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="" data-placement="bottom-right"
+			data-template="view/ticketSmallDetail.html"
+			data-animation="am-flip-x" bs-popover="popover"><a href="">Ticket</a></li>
+        </ul>
+<!--         </div> -->
+        
+  </div>
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<button type="button" class="btn btn-default"
+			ng-model="selectedCenter" data-html="1"
+			ng-options="dc as dc.hospitalName for dc in donorCenterList"
+			bs-select>
+			Action <span class="caret"></span>
+		</button>
+		<!-- <button type="button" class="btn btn-default" ng-model="selectedRadious" data-html="1"  ng-options="km.value as km.label for km in KmList" bs-select> -->
+		<!--   Action <span class="caret"></span> -->
+		<!-- </button> -->
+		<button type="button" class="btn  bn-primary" value="Get Donor"
+			ng-click="load();">Get Donor</button>
+		<!-- <button type="button" class="btn  bn-primary" data-placement="bottom" data-animation="am-flip-x" bs-popover="popover"> -->
+		<!-- Search for Donor -->
+		<!-- </button> -->
+		<!-- Button to trigger a default popover with a scope as an object {title:'', content:'', etc.} -->
+		<button type="button" class="btn btn-primary"
+			data-placement="bottom-right" data-template="view/tttt.html"
+			data-animation="am-flip-x" bs-popover="popover">Click to
+			toggle popover</button>
+		<button type="button" class="btn btn-primary right"
+			data-placement="bottom-right"
+			data-template="view/ticketSmallDetail.html"
+			data-animation="am-flip-x" bs-popover="popover">Ticket
+			Detail</button>
+	</div>
+		<div id="map-canvas"></div>
+</div>
