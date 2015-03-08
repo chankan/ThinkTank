@@ -1,0 +1,50 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Add New Request
+				</div>
+				<div class="panel-body">
+					<form role="form">
+						<div id="alerts-container"></div>
+						<fieldset>
+							<div class="form-group">
+								<input class="form-control" placeholder="Ticket Details"
+									name="ticketDetails" ng-model="ticket.ticketDetails"
+									type="text" autofocus>
+							</div>
+							<div class="form-group">
+								<input class="form-control" placeholder="Ticket Severity"
+									name="ticketSeverity" ng-model="ticket.ticketSeverity"
+									type="text">
+							</div>
+							<div class="form-group">
+								<input class="form-control" placeholder="Ticket RaisedBy"
+									name="ticketRaisedBy" ng-model="ticket.ticketRaisedBy"
+									type="text">
+							</div>
+							<div class="form-group">
+								<input class="form-control" placeholder="Ticket RaisedTo"
+									name="ticketRaisedTo" ng-model="ticket.ticketRaisedTo"
+									type="text">
+							</div>
+							<!-- 		<div class="form-group"> -->
+							<!-- 			<input class="form-control" placeholder="Ticket Creation Date" name="ticketCreationDate" ng-model="ticket.ticketCreationDate" type="text" > -->
+							<!-- 		</div> -->
+							<!-- 		<div class="form-group"> -->
+							<!-- 			<input class="form-control" placeholder="Ticket Status" name="ticketStatus" ng-model="ticket.ticketStatus" type="text" > -->
+							<!-- 		</div> -->
+							<div class="form-group">
+								<input class="form-control" placeholder="Ticket Comments"
+									name="comments" ng-model="ticket.comments" type="text">
+							</div>
+							<a class="btn btn-lg btn-success btn-block" ng-click="create()">Create
+								Ticket </a>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

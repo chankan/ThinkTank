@@ -22,7 +22,7 @@ public class HospitalServiceImpl {
 	}
 	
 	
-	public HospitalMaster addHospitalMaster(HospitalMaster hsopitalMaster)
+	public HospitalMaster addHospitalMaster(HospitalMaster hsopitalMaster) throws Exception
 	{
 		HospitalMasterDAO dao = new HospitalMasterDAO();
 		
